@@ -1,4 +1,4 @@
-import React, { useContext, useEffect, useReducer } from "react"
+import React, { useContext, useEffect, useReducer, useState } from "react"
 import { useParams, withRouter } from "react-router"
 import DispatchContext from "../AddDispatchContext"
 import StateContext from "../AppStateContext"
@@ -14,14 +14,13 @@ function EditPost(props) {
       author: "",
       content: "",
       createdAt: appState.posts[id].createdAt,
-    },
-    requestCount: 0,
+    }
   }
   function ourReducer(state, action) {
     switch (action.type) {
       case "getPostData":
         return {
-          post:action.value
+          post: action.value,
         }
       case "titleChange":
         return {
@@ -32,7 +31,7 @@ function EditPost(props) {
             conten: state.post.content,
             createdAt: state.post.createdAt,
           },
-          requestCount: state.post.requestCount,
+          
         }
       case "AuthorChange":
         return {
@@ -43,7 +42,6 @@ function EditPost(props) {
             conten: state.post.content,
             createdAt: state.post.createdAt,
           },
-          requestCount: state.requestCount,
         }
       case "contentChange":
         return {
@@ -58,31 +56,31 @@ function EditPost(props) {
         }
       case "submit":
         return {
-          post: state.post,
-          requestCount: state.requestCount++,
+          ...state,
         }
       default:
-        break
+         return state
     }
   }
   const [state, dispatch] = useReducer(ourReducer, intialValue)
+  const [requestCount, setrequestCount] = useState(0)
 
   useEffect(() => {
     dispatch({ type: "getPostData", value: appState.posts[id] })
   }, [])
 
   useEffect(() => {
-    if (state.requestCount) {
-      console.log(state)
-      appDispatch({ type: "editPost", value:state.post })
+    if (requestCount) {
+      console.log(requestCount)
+      appDispatch({ type: "editPost", value: { id: id, post: state.post } })
     }
-  }, [state.requestCount])
+  }, [requestCount])
 
   function handleSubmit(e) {
     e.preventDefault()
-    dispatch({ type: "submit" })
-    props.history.push("/posts")
-    console.log(state)
+    // appDispatch({ type: "submit" })
+    setrequestCount(prev=> prev+1)
+    // props.history.push("/posts")
   }
 
   return (
