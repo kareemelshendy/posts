@@ -1,25 +1,60 @@
-import logo from './logo.svg';
-import './App.css';
+import { useReducer } from "react"
+import { BrowserRouter, Switch, Route } from "react-router-dom"
+import DispatchContext from "./AddDispatchContext"
+import "./App.scss"
+import StateContext from "./AppStateContext"
+import AddPost from "./components/AddPost"
+import EditPost from "./components/EditPost"
+import Header from "./components/Header"
+import Home from "./components/Home"
+import ViewPosts from "./components/ViewPosts"
 
 function App() {
+  const intialValue = {
+    posts: [
+      { id: 0, title: "Hello form Post 1", author: "kareeem", content: "welcome to my post 1", createdAt: "24/10/2021 || 15:28:29" },
+      { id: 1, title: "Hello from Post 2", author: "Mohamed Elsayed", content: "welcome to post 2", createdAt: "24/10/2021 ||15:28:29" },
+    ],
+    requestCount: 0,
+  }
+
+  function ourReducer(state, action) {
+    switch (action.type) {
+      case "addPost":
+        return {
+          posts: state.posts.concat(action.value),
+        }
+      case "editPost":
+        return
+    }
+  }
+
+  const [state, dispatch] = useReducer(ourReducer, intialValue)
+
+  // localStorage.setItem("Posts", JSON.stringify(state))
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+    <StateContext.Provider value={state}>
+      <DispatchContext.Provider value={dispatch}>
+        <BrowserRouter>
+          <Header />
+          <Switch>
+            <Route path="/" exact>
+              <Home />
+            </Route>
+            <Route path="/addpost">
+              <AddPost />
+            </Route>
+            <Route path="/posts">
+              <ViewPosts />
+            </Route>
+            <Route path="/edit/:id">
+              <EditPost />
+            </Route>
+          </Switch>
+        </BrowserRouter>
+      </DispatchContext.Provider>
+    </StateContext.Provider>
+  )
 }
 
-export default App;
+export default App
