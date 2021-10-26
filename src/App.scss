@@ -17,6 +17,7 @@ ul {
 a {
     text-decoration: none;
     color: #000;
+    // display: block;
 }
 
 h1,
@@ -372,6 +373,12 @@ header {
                 font-size: 0.9rem;
                 font-weight: 600;
             }
+        }
+        &__btn {
+            width: 100%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
         }
     }
 }

@@ -43,6 +43,12 @@ function Home() {
               ) : (
                 <div className="mt-2">no Post Yet</div>
               )}
+              <div className="post__btn mt-2">
+                <Link to="/posts" className="btn">
+                  {" "}
+                  seeMore{" "}
+                </Link>
+              </div>
             </div>
           </div>
         </section>
