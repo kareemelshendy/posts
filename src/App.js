@@ -24,12 +24,17 @@ function App() {
         return {
           posts: state.posts.concat(action.value),
         }
-      case "editPost":
-        return
+      case 'editPost':
+        const post = state.posts[action.id]
+        return{
+          post:action.value
+        }
     }
   }
 
   const [state, dispatch] = useReducer(ourReducer, intialValue)
+
+  // state.posts[0] = { id: 0, title: "Hello from Post edit", author: "Mohamed Elsayedssss", content: "welcome to post edit", createdAt: "24/10/2021 ||15:28:29" }
 
   // localStorage.setItem("Posts", JSON.stringify(state))
   return (

@@ -8,54 +8,59 @@ function EditPost(props) {
   const appDispatch = useContext(DispatchContext)
   const { id } = useParams()
   const intialValue = {
-    id: id,
-    title: "",
-    author: "",
-    content: "",
-    createdAt: appState[id].createdAt,
-    requestCount:0
+    post: {
+      id: id,
+      title: "",
+      author: "",
+      content: "",
+      createdAt: appState.posts[id].createdAt,
+    },
+    requestCount: 0,
   }
-  // console.log(appState.posts[id])
   function ourReducer(state, action) {
     switch (action.type) {
       case "getPostData":
-        return (state = action.value)
-      case "titleChange":
-        return{
-          id:state.id,
-          title:action.value,
-          author:state.author,
-          conten:state.content,
-          createdAt:state.createdAt,
-          requestCount:state.requestCount
+        return {
+          post:action.value
         }
-        case 'AuthorChange':
-          return{
-            id:state.id,
-            title:state.title,
-            author:action.value,
-            conten:state.content,
-            createdAt:state.createdAt,
-            requestCount:state.requestCount
-          }
-        case 'contentChange':
-          return{
-            id:state.id,
-            title:state.title,
-            author:state.author,
-            conten:action.value,
-            createdAt:state.createdAt,
-            requestCount:state.requestCount
-          }
-         case 'submit':
-           return{
-            id:state.id,
-            title:state.title,
-            author:state.author,
-            conten:state.content,
-            createdAt:state.createdAt,
-            requestCount:state.requestCount++
-           } 
+      case "titleChange":
+        return {
+          post: {
+            id: state.post.id,
+            title: action.value,
+            author: state.post.author,
+            conten: state.post.content,
+            createdAt: state.post.createdAt,
+          },
+          requestCount: state.post.requestCount,
+        }
+      case "AuthorChange":
+        return {
+          post: {
+            id: state.post.id,
+            title: state.post.title,
+            author: action.value,
+            conten: state.post.content,
+            createdAt: state.post.createdAt,
+          },
+          requestCount: state.requestCount,
+        }
+      case "contentChange":
+        return {
+          post: {
+            id: state.post.id,
+            title: state.post.title,
+            author: state.post.author,
+            conten: action.value,
+            createdAt: state.post.createdAt,
+          },
+          requestCount: state.requestCount,
+        }
+      case "submit":
+        return {
+          post: state.post,
+          requestCount: state.requestCount++,
+        }
       default:
         break
     }
@@ -63,24 +68,22 @@ function EditPost(props) {
   const [state, dispatch] = useReducer(ourReducer, intialValue)
 
   useEffect(() => {
-    dispatch({ type: "getPostData", value: appState[id] })
+    dispatch({ type: "getPostData", value: appState.posts[id] })
   }, [])
 
-  useEffect(()=>{
-    if(state.requestCount){
-      appDispatch({type:'editPost', value:{title:state.title,id:state.id,author:state.author,content:state.content,createdAt:state.createdAt}})
+  useEffect(() => {
+    if (state.requestCount) {
+      console.log(state)
+      appDispatch({ type: "editPost", value:state.post })
     }
-  },[state.requestCount])
+  }, [state.requestCount])
 
   function handleSubmit(e) {
     e.preventDefault()
-    dispatch({type:'submit'})
-    props.history.push('/posts')
+    dispatch({ type: "submit" })
+    props.history.push("/posts")
     console.log(state)
   }
-
-
-
 
   return (
     <main>
@@ -93,13 +96,13 @@ function EditPost(props) {
                 <label className="form__group-label" htmlFor="title">
                   Title
                 </label>
-                <input onChange={(e) => dispatch({ type: "titleChange", value: e.target.value })} value={state.title} className="form__group-input" type="text" placeholder="Add title" />
+                <input onChange={(e) => dispatch({ type: "titleChange", value: e.target.value })} value={state.post.title} className="form__group-input" type="text" placeholder="Add title" />
               </div>
               <div className="form__group">
                 <label className="form__group-label" htmlFor="Author">
                   Author
                 </label>
-                <input onChange={(e) => dispatch({ type: "AuthorChange", value: e.target.value })} value={state.author} className="form__group-input" type="text" placeholder="Add Author" />
+                <input onChange={(e) => dispatch({ type: "AuthorChange", value: e.target.value })} value={state.post.author} className="form__group-input" type="text" placeholder="Add Author" />
               </div>
             </div>
 
@@ -107,7 +110,7 @@ function EditPost(props) {
               <label htmlFor="title" className="form__group-label">
                 Content
               </label>
-              <textarea onChange={(e) => dispatch({ type: "contentChange", value: e.target.value })} value={state.content} className="form__group-textarea" name="" id="" cols="30" rows="10" placeholder="Add Content"></textarea>
+              <textarea onChange={(e) => dispatch({ type: "contentChange", value: e.target.value })} value={state.post.content} className="form__group-textarea" name="" id="" cols="30" rows="10" placeholder="Add Content"></textarea>
             </div>
             <div className="form__button">
               <button type="submit" className="btn btn-noBorder  mt-2">
