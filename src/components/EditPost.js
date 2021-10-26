@@ -51,7 +51,7 @@ function EditPost(props) {
             id: state.post.id,
             title: state.post.title,
             author: state.post.author,
-            conten: action.value,
+            content: action.value,
             createdAt: state.post.createdAt,
           },
           requestCount: state.requestCount,

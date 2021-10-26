@@ -24,10 +24,11 @@ function App() {
         return {
           posts: state.posts.concat(action.value),
         }
-      case 'editPost':
-        const post = state.posts[action.id]
-        return{
-          post:action.value
+      case "editPost":
+        let post = state.posts[action.id]
+        state.posts = post
+        return {
+          posts: action.value,
         }
     }
   }
