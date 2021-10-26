@@ -1,6 +1,6 @@
 import React, { useContext } from "react"
 import { Link } from "react-router-dom"
-import StateContext from "../AppStateContext"
+import StateContext from "../contexts/AppStateContext"
 import icon from "../img/logo.png"
 
 

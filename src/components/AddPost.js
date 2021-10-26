@@ -1,7 +1,7 @@
 import React, { useContext, useState } from "react"
 import { withRouter } from "react-router"
-import DispatchContext from "../AddDispatchContext"
-import StateContext from "../AppStateContext"
+import DispatchContext from "../contexts/AddDispatchContext"
+import StateContext from "../contexts/AppStateContext"
 import Page from "./Page"
 
 function AddPost(props) {
@@ -13,8 +13,12 @@ function AddPost(props) {
 
   function handleSubmit(e) {
     e.preventDefault()
+
+    // Create Date
     const date = new Date()
     const createdAt = `${date.getDate()}/${date.getMonth() + 1}/${date.getFullYear()} || ${date.getHours()}:${date.getMinutes()}:${date.getSeconds()}`
+
+    // Add post value to dispach
     appDispatch({
       type: "addPost",
       value: {
@@ -22,7 +26,7 @@ function AddPost(props) {
         title,
         author,
         content,
-        createdAt:createdAt
+        createdAt: createdAt,
       },
     })
     props.history.push("/posts")
@@ -30,7 +34,6 @@ function AddPost(props) {
 
   return (
     <Page title="addPost">
-      <main>
       <section id="addpost" className="mt-2 mb-2">
         <div className="container">
           <h2>Add Post</h2>
@@ -64,9 +67,7 @@ function AddPost(props) {
           </form>
         </div>
       </section>
-    </main>
     </Page>
-    
   )
 }
 

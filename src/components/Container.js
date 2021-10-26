@@ -3,7 +3,7 @@ import React from "react"
 function Container(props) {
   return (
     <div className="overall__container">
-        {props.children}
+      <main>{props.children}</main>
     </div>
   )
 }

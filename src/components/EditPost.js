@@ -1,12 +1,14 @@
 import React, { useContext, useEffect, useReducer, useState } from "react"
 import { useParams, withRouter } from "react-router"
-import DispatchContext from "../AddDispatchContext"
-import StateContext from "../AppStateContext"
+import DispatchContext from "../contexts/AddDispatchContext"
+import StateContext from "../contexts/AppStateContext"
+import Page from "./Page"
 
 function EditPost(props) {
   const appState = useContext(StateContext)
   const appDispatch = useContext(DispatchContext)
   const { id } = useParams()
+  const [requestCount, setrequestCount] = useState(0)
   const intialValue = {
     post: {
       id: id,
@@ -14,7 +16,7 @@ function EditPost(props) {
       author: "",
       content: "",
       createdAt: appState.posts[id].createdAt,
-    }
+    },
   }
   function ourReducer(state, action) {
     switch (action.type) {
@@ -31,7 +33,6 @@ function EditPost(props) {
             conten: state.post.content,
             createdAt: state.post.createdAt,
           },
-          
         }
       case "AuthorChange":
         return {
@@ -59,32 +60,32 @@ function EditPost(props) {
           ...state,
         }
       default:
-         return state
+        return state
     }
   }
   const [state, dispatch] = useReducer(ourReducer, intialValue)
-  const [requestCount, setrequestCount] = useState(0)
 
   useEffect(() => {
     dispatch({ type: "getPostData", value: appState.posts[id] })
   }, [])
 
   useEffect(() => {
-    if (requestCount) {
-      console.log(requestCount)
+    if (state.requestCount) {
       appDispatch({ type: "editPost", value: { id: id, post: state.post } })
     }
-  }, [requestCount])
+  }, [state.requestCount])
 
+  // Submit button
   function handleSubmit(e) {
     e.preventDefault()
     // appDispatch({ type: "submit" })
-    setrequestCount(prev=> prev+1)
+    // setrequestCount((prev) => prev++)
     // props.history.push("/posts")
+    console.log(requestCount)
   }
 
   return (
-    <main>
+    <Page title="Edit Post">
       <section id="addpost" className="mt-2 mb-2">
         <div className="container">
           <h2>Edit Post</h2>
@@ -118,7 +119,7 @@ function EditPost(props) {
           </form>
         </div>
       </section>
-    </main>
+    </Page>
   )
 }
 
