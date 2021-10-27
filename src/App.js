@@ -48,7 +48,6 @@ function App() {
         return {
           posts: deletedposts,
         }
-        }
       default:
         return state
     }
