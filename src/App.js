@@ -5,7 +5,6 @@ import DispatchContext from "./contexts/AddDispatchContext"
 import StateContext from "./contexts/AppStateContext"
 import "./App.scss"
 
-
 import AddPost from "./components/AddPost"
 import EditPost from "./components/EditPost"
 import Header from "./components/Header"
@@ -33,11 +32,12 @@ function App() {
       case "editPost":
         const updatedPost = {
           ...state.posts[action.value.id],
-          ...action.value,
+          ...action.value.post,
         }
         const updatedPosts = [...state.posts]
         updatedPosts[action.value.id] = updatedPost
         return {
+          ...state,
           posts: updatedPosts,
         }
       default:
@@ -52,7 +52,7 @@ function App() {
     if (localStorage.getItem("Posts")) {
       dispatch({ type: "getPostsArray", value: JSON.parse(localStorage.getItem("Posts")) })
     } else {
-      dispatch({ type: "getPostsArray", value: [] })
+      dispatch({ type: "getPostsArray", value: state.posts })
     }
   }, [])
 

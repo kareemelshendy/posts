@@ -9,7 +9,7 @@ function Home() {
   const appState = useContext(StateContext)
   const post = appState.posts[appState.posts.length - 1]
   return (
-    <Page title="Home">
+    <Page title="Home" >
       <section id="singlePost" className="mt-2 mb-2">
         <div className="container">
           <div className="post">

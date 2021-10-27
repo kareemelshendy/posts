@@ -11,7 +11,7 @@ function ViewPosts() {
 
   return (
     <Page title="View Posts">
-      <section id="home-1" className="mt-1 mb-4">
+      <section id="home-1" className="mt-2 mb-4">
         <div className="container">
           <div className="posts">
             <div className="posts__top">

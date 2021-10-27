@@ -218,73 +218,6 @@ header {
     }
 }
 
-@media (max-width: 1065px) {
-    #home-1 {
-        .posts {
-            &__card {
-                &-author {
-                    p {
-                        font-size: 0.7rem;
-                    }
-                    &>div {
-                        h4 {
-                            font-size: 0.8rem;
-                        }
-                    }
-                }
-            }
-        }
-    }
-}
-
-@media (max-width: 960px) {
-    #home-1 {
-        .posts {
-            &__cards {
-                grid-template-columns: repeat(2, 1fr);
-            }
-            &__card {
-                &-author {
-                    p {
-                        font-size: 0.7rem;
-                    }
-                }
-                &-title {
-                    font-size: 0.8rem;
-                }
-                &-content {
-                    font-size: 0.8rem;
-                }
-            }
-        }
-    }
-}
-
-@media (max-width: 657px) {
-    #home-1 {
-        .posts {
-            &__cards {
-                grid-template-columns: 1fr;
-            }
-            &__card {
-                &-author {
-                    p {
-                        font-size: 0.8rem;
-                    }
-                    &>div {
-                        h4 {
-                            font-size: 1rem;
-                        }
-                    }
-                }
-                &-title {
-                    font-size: 1rem;
-                }
-            }
-        }
-    }
-}
-
 // Add post 
 #addpost {
     .form {
@@ -386,6 +319,74 @@ header {
             display: flex;
             justify-content: center;
             align-items: center;
+        }
+    }
+}
+
+// media
+@media (max-width: 1065px) {
+    #home-1 {
+        .posts {
+            &__card {
+                &-author {
+                    p {
+                        font-size: 0.7rem;
+                    }
+                    &>div {
+                        h4 {
+                            font-size: 0.8rem;
+                        }
+                    }
+                }
+            }
+        }
+    }
+}
+
+@media (max-width: 960px) {
+    #home-1 {
+        .posts {
+            &__cards {
+                grid-template-columns: repeat(2, 1fr);
+            }
+            &__card {
+                &-author {
+                    p {
+                        font-size: 0.7rem;
+                    }
+                }
+                &-title {
+                    font-size: 0.8rem;
+                }
+                &-content {
+                    font-size: 0.8rem;
+                }
+            }
+        }
+    }
+}
+
+@media (max-width: 657px) {
+    #home-1 {
+        .posts {
+            &__cards {
+                grid-template-columns: 1fr;
+            }
+            &__card {
+                &-author {
+                    p {
+                        font-size: 0.8rem;
+                    }
+                    &>div {
+                        h4 {
+                            font-size: 1rem;
+                        }
+                    }
+                }
+                &-title {
+                    font-size: 1rem;
+                }
+            }
         }
     }
 }
