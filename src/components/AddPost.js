@@ -22,7 +22,7 @@ function AddPost(props) {
     appDispatch({
       type: "addPost",
       value: {
-        id: appState.posts.length,
+        id: appState.posts.length+1,
         title,
         author,
         content,

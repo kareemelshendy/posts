@@ -1,20 +1,25 @@
 import React, { useContext } from "react"
 import { Link } from "react-router-dom"
 import DispatchContext from "../contexts/AddDispatchContext"
+import StateContext from "../contexts/AppStateContext"
 
 import postImage from "../img/post-img.jpg"
 function Post(props) {
   const appDispatch= useContext(DispatchContext)
+  const appState= useContext(StateContext)
+
+  // console.log(props.index)
 
   function handleDelete(){
-    appDispatch({type:'deletePost' , value:props.post.id})
+    appDispatch({type:'deletePost' , value:appState.posts.indexOf(props.post)})
+    console.log(appState.posts.indexOf(props.post))
   }
   return (
     <div className="posts__card">
       <div className="posts__card-img">
         <img src={postImage} alt="" />
       </div>
-      <Link to={`/edit/${props.post.id}`} className="posts__card-edit ">
+      <Link to={`/edit/${appState.posts.indexOf(props.post)+1}`} className="posts__card-edit ">
         <i className="fas fa-pen"></i>
       </Link>
       <button onClick={handleDelete} className="posts__card-delete">

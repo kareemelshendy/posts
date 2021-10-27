@@ -22,7 +22,7 @@ function ViewPosts() {
             </div>
             <div className="posts__cards mt-2">
               {AppState.posts.map((post) => {
-                return <Post key={post.id} post={post} />
+                return <Post key={post.id} post={post} index={AppState.posts.indexOf(post)} />
               })}
             </div>
           </div>

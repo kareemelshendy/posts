@@ -7,7 +7,7 @@ import { Link } from "react-router-dom"
 
 function Home() {
   const appState = useContext(StateContext)
-  const post = appState.posts[appState.posts.length - 1]
+  const post = appState.posts[appState.posts.length-1]
   return (
     <Page title="Home" >
       <section id="singlePost" className="mt-2 mb-2">

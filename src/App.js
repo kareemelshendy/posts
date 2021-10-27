@@ -45,8 +45,14 @@ function App() {
         const deletedposts = [...state.posts]
         deletedposts.splice(action.value, 1)
         return {
-
           posts: deletedposts,
+        }
+
+        return {
+          ...state,
+          recipes: state.recipes.filter((recipe, index) => {
+            return index !== action.payload
+          }),
         }
       default:
         return state
@@ -60,7 +66,7 @@ function App() {
     if (localStorage.getItem("Posts")) {
       dispatch({ type: "getPostsArray", value: JSON.parse(localStorage.getItem("Posts")) })
     } else {
-      dispatch({ type: "getPostsArray", value: state.posts })
+      dispatch({ type: "getPostsArray", value: [] })
     }
   }, [])
 
