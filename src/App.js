@@ -34,11 +34,19 @@ function App() {
           ...state.posts[action.value.id],
           ...action.value.post,
         }
+        // console.log('updatePost' , updatedPosts)
         const updatedPosts = [...state.posts]
         updatedPosts[action.value.id] = updatedPost
         return {
           ...state,
           posts: updatedPosts,
+        }
+      case "deletePost":
+        const deletedposts = [...state.posts]
+        deletedposts.splice(action.value, 1)
+        return {
+
+          posts: deletedposts,
         }
       default:
         return state

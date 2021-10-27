@@ -158,7 +158,21 @@ header {
                 display: none;
                 // transition: all 5s ease-in;
             }
-            &:hover .posts__card-edit {
+            &-delete {
+                position: absolute;
+                left: 1rem;
+                top: 1rem;
+                padding: .4rem 0.7rem;
+                background-color: #eb344c;
+                border: none;
+                cursor: pointer;
+                color: #fff;
+                border-radius: 3px;
+                display: none;
+                // transition: all 5s ease-in;
+            }
+            &:hover .posts__card-edit,
+            &:hover .posts__card-delete {
                 display: block;
             }
             &:hover .posts__card-img::after {

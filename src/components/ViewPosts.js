@@ -1,13 +1,13 @@
 import React, { useContext } from "react"
 import { Link } from "react-router-dom"
+import { useEffect } from "react/cjs/react.development"
 import StateContext from "../contexts/AppStateContext"
 import Page from "./Page"
 import Post from "./Post"
 
 function ViewPosts() {
   const AppState = useContext(StateContext)
-
-  console.log(AppState.posts)
+  // console.log(AppState.posts)
 
   return (
     <Page title="View Posts">

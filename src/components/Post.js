@@ -1,8 +1,14 @@
-import React from "react"
+import React, { useContext } from "react"
 import { Link } from "react-router-dom"
+import DispatchContext from "../contexts/AddDispatchContext"
 
 import postImage from "../img/post-img.jpg"
 function Post(props) {
+  const appDispatch= useContext(DispatchContext)
+
+  function handleDelete(){
+    appDispatch({type:'deletePost' , value:props.post.id})
+  }
   return (
     <div className="posts__card">
       <div className="posts__card-img">
@@ -11,6 +17,9 @@ function Post(props) {
       <Link to={`/edit/${props.post.id}`} className="posts__card-edit ">
         <i className="fas fa-pen"></i>
       </Link>
+      <button onClick={handleDelete} className="posts__card-delete">
+      <i className="fas fa-trash"></i>
+      </button>
       <div className="posts__card-body">
         <div className="posts__card-author">
           <div>
