@@ -48,12 +48,6 @@ function App() {
         return {
           posts: deletedposts,
         }
-
-        return {
-          ...state,
-          recipes: state.recipes.filter((recipe, index) => {
-            return index !== action.payload
-          }),
         }
       default:
         return state
