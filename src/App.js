@@ -30,13 +30,14 @@ function App() {
           posts: [...state.posts, action.value],
         }
       case "editPost":
+        const id = action.value.id -1
         const updatedPost = {
-          ...state.posts[action.value.id],
+          ...state.posts[id],
           ...action.value.post,
         }
         // console.log('updatePost' , updatedPosts)
         const updatedPosts = [...state.posts]
-        updatedPosts[action.value.id] = updatedPost
+        updatedPosts[id] = updatedPost
         return {
           ...state,
           posts: updatedPosts,

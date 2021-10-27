@@ -68,7 +68,7 @@ function EditPost(props) {
 
   useEffect(() => {
     if (requestCount) {
-      appDispatch({ type: "editPost", value: { id: id-1, post: state.post } })
+      appDispatch({ type: "editPost", value: { id: id, post: state.post } })
       console.log( state.post,requestCount)
       props.history.push("/posts")
     }
