@@ -40,7 +40,7 @@ function App() {
         updatedPosts[id] = updatedPost
         return {
           ...state,
-          posts: updatedPosts,
+          posts: updatedPosts
         }
       case "deletePost":
         const deletedposts = [...state.posts]
