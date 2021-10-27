@@ -16,7 +16,7 @@ function App() {
     posts: [
       // { id: 0, title: "Hello form Post 1", author: "kareeem", content: "welcome to my post 1", createdAt: "24/10/2021 || 15:28:29" },
       // { id: 1, title: "Hello from Post 2", author: "Mohamed Elsayed", content: "welcome to post 2", createdAt: "24/10/2021 ||15:28:29" }
-    ],
+    ]
   }
 
   function ourReducer(state, action) {
@@ -35,7 +35,6 @@ function App() {
           ...state.posts[id],
           ...action.value.post,
         }
-        // console.log('updatePost' , updatedPosts)
         const updatedPosts = [...state.posts]
         updatedPosts[id] = updatedPost
         return {
