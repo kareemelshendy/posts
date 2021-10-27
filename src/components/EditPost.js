@@ -8,6 +8,8 @@ function EditPost(props) {
   const appState = useContext(StateContext)
   const appDispatch = useContext(DispatchContext)
   const { id } = useParams()
+
+  
   
   const intialValue = {
     post: {
@@ -23,7 +25,7 @@ function EditPost(props) {
     switch (action.type) {
       case "getPostData":
         return {
-          post: action.value,
+          post: action.value
         }
       case "titleChange":
         return {
@@ -61,15 +63,18 @@ function EditPost(props) {
   }
   const [state, dispatch] = useReducer(ourReducer, intialValue)
   const [requestCount, setrequestCount] = useState(0)
+  
 
   useEffect(() => {
-    dispatch({ type: "getPostData", value: appState.posts[id-1] })
-  }, [])
+    if(appState.posts[id-1]){
+      dispatch({ type: "getPostData", value: appState.posts[id-1] })
+    }
+  }, [appState])
 
   useEffect(() => {
     if (requestCount) {
       appDispatch({ type: "editPost", value: { id: id, post: state.post } })
-      console.log( state.post,requestCount)
+
       props.history.push("/posts")
     }
   }, [requestCount])

@@ -59,7 +59,7 @@ function App() {
     if (localStorage.getItem("Posts")) {
       dispatch({ type: "getPostsArray", value: JSON.parse(localStorage.getItem("Posts")) })
     } else {
-      dispatch({ type: "getPostsArray", value: [] })
+      dispatch({ type: "getPostsArray", value: state.posts})
     }
   }, [])
 
@@ -79,10 +79,10 @@ function App() {
             <Route path="/addpost">
               <AddPost />
             </Route>
-            <Route path="/posts">
+            <Route path="/posts" exact>
               <ViewPosts />
             </Route>
-            <Route path="/edit/:id">
+            <Route path="/edit/:id" >
               <EditPost />
             </Route>
           </Switch>
