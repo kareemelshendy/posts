@@ -1,14 +1,17 @@
 import React from "react"
 import { Link } from "react-router-dom"
+import { useContext } from "react/cjs/react.development"
+import StateContext from "../contexts/AppStateContext"
 
 import postImage from "../img/post-img.jpg"
 function Post(props) {
+  const appState = useContext(StateContext)
   return (
     <div className="posts__card">
       <div className="posts__card-img">
         <img src={postImage} alt="" />
       </div>
-      <Link to={`/edit/${props.post.id}`} className="posts__card-edit ">
+      <Link to={`/edit/${appState.posts.indexOf(props.post)+1}`} className="posts__card-edit ">
         <i className="fas fa-pen"></i>
       </Link>
       <div className="posts__card-body">

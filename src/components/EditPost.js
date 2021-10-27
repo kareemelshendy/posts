@@ -63,8 +63,11 @@ function EditPost(props) {
   const [requestCount, setrequestCount] = useState(0)
 
   useEffect(() => {
-    dispatch({ type: "getPostData", value: appState.posts[id] })
-  }, [])
+    if(appState.posts[id-1] ){
+
+      dispatch({ type: "getPostData", value: appState.posts[id-1] })
+    }
+  }, [appState])
 
   useEffect(() => {
     if (requestCount) {
