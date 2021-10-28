@@ -2,8 +2,8 @@ import React, { useContext } from "react"
 import { Link } from "react-router-dom"
 import { useEffect } from "react/cjs/react.development"
 import StateContext from "../contexts/AppStateContext"
-import Page from "./Page"
-import Post from "./Post"
+import Page from "./utilities/Page"
+import Post from "./utilities/Post"
 
 function ViewPosts() {
   const AppState = useContext(StateContext)

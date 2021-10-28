@@ -1,70 +1,20 @@
-import React, { useContext, useState } from "react"
+import React from "react"
 import { withRouter } from "react-router"
-import DispatchContext from "../contexts/AddDispatchContext"
-import StateContext from "../contexts/AppStateContext"
-import Page from "./Page"
-
+import { useContext } from "react/cjs/react.development"
+import Page from "./utilities/Page"
+import PostFormInput from "./utilities/PostFormInput"
+import StateContext from '../contexts/AppStateContext'
+import DispatchContext from'../contexts/AddDispatchContext'
 function AddPost(props) {
-  const [title, setTitle] = useState()
-  const [author, setAuthor] = useState()
-  const [content, setContent] = useState()
-  const appDispatch = useContext(DispatchContext)
-  const appState = useContext(StateContext)
-
-  function handleSubmit(e) {
-    e.preventDefault()
-
-    // Create Date
-    const date = new Date()
-    const createdAt = `${date.getDate()}/${date.getMonth() + 1}/${date.getFullYear()} || ${date.getHours()}:${date.getMinutes()}:${date.getSeconds()}`
-
-    // Add post value to dispach
-    appDispatch({
-      type: "addPost",
-      value: {
-        id: appState.posts.length+1,
-        title,
-        author,
-        content,
-        createdAt: createdAt,
-      },
-    })
-    props.history.push("/posts")
-  }
-
+  
+const appState = useContext(StateContext)
+const appDispatch = useContext(DispatchContext)
   return (
     <Page title="addPost">
       <section id="addpost" className="mt-2 mb-2">
         <div className="container">
           <h2>Add Post</h2>
-          <form action="" className="form" onSubmit={handleSubmit}>
-            <div className="mt-2">
-              <div className="form__group">
-                <label className="form__group-label" htmlFor="title">
-                  Title
-                </label>
-                <input onChange={(e) => setTitle(e.target.value)} className="form__group-input" type="text" placeholder="Add title" />
-              </div>
-              <div className="form__group">
-                <label className="form__group-label" htmlFor="Author">
-                  Author
-                </label>
-                <input onChange={(e) => setAuthor(e.target.value)} className="form__group-input" type="text" placeholder="Add Author" />
-              </div>
-            </div>
-
-            <div className="form__group mt-2">
-              <label htmlFor="title" className="form__group-label">
-                Content
-              </label>
-              <textarea onChange={(e) => setContent(e.target.value)} className="form__group-textarea" name="" id="" cols="30" rows="10" placeholder="Add Content"></textarea>
-            </div>
-            <div className="form__button">
-              <button type="submit" className="btn btn-noBorder  mt-2">
-                Add Post
-              </button>
-            </div>
-          </form>
+          <PostFormInput appState={appState} appDispatch={appDispatch}  />
         </div>
       </section>
     </Page>

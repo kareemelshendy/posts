@@ -1,9 +1,9 @@
 import React, { useContext } from "react"
 import { Link } from "react-router-dom"
-import DispatchContext from "../contexts/AddDispatchContext"
-import StateContext from "../contexts/AppStateContext"
+import DispatchContext from "../../contexts/AddDispatchContext"
+import StateContext from "../../contexts/AppStateContext"
 
-import postImage from "../img/post-img.jpg"
+import postImage from "../../img/post-img.jpg"
 function Post(props) {
   const appDispatch= useContext(DispatchContext)
   const appState= useContext(StateContext)

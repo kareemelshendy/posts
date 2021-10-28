@@ -1,5 +1,5 @@
 import React, { useContext } from "react"
-import Page from "./Page"
+import Page from "./utilities/Page"
 
 import postImage from "../img/post-img.jpg"
 import StateContext from "../contexts/AppStateContext"

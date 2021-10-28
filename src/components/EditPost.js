@@ -2,7 +2,7 @@ import React, { useContext, useEffect, useReducer, useState } from "react"
 import { useParams, withRouter } from "react-router"
 import DispatchContext from "../contexts/AddDispatchContext"
 import StateContext from "../contexts/AppStateContext"
-import Page from "./Page"
+import Page from "./utilities/Page"
 
 function EditPost(props) {
   const appState = useContext(StateContext)
