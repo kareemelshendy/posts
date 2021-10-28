@@ -8,6 +8,7 @@ function PostFormInput(props) {
   const [title, setTitle] = useState()
   const [author, setAuthor] = useState()
   const [content, setContent] = useState()
+  const id = props.appState.posts[props.appState.posts.length-1].id+1
   function handleSubmit(e) {
     e.preventDefault()
     // Create Date
@@ -18,7 +19,7 @@ function PostFormInput(props) {
     props.appDispatch({
       type: "addPost",
       value: {
-        id: props.appState.posts.length + 1,
+        id: id,
         title,
         author,
         content,
@@ -34,7 +35,7 @@ function PostFormInput(props) {
           <label className="form__group-label" htmlFor="title">
             Title
           </label>
-          <input onChange={(e) => setTitle(e.target.value)} className="form__group-input" type="text" placeholder="Add title" />
+          <input autoFocus onChange={(e) => setTitle(e.target.value)} className="form__group-input" type="text" placeholder="Add title" />
         </div>
         <div className="form__group">
           <label className="form__group-label" htmlFor="Author">
