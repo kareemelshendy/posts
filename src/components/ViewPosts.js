@@ -10,7 +10,7 @@ function ViewPosts() {
   // console.log(AppState.posts)
 
   return (
-    <Page title="View Posts">
+    <Page title='Posts'>
       <section id="home-1" className="mt-2 mb-4">
         <div className="container">
           <div className="posts">

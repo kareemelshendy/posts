@@ -1,14 +1,14 @@
 import React, { useState } from "react"
 import { withRouter } from "react-router"
- 
-
-
 
 function PostFormInput(props) {
   const [title, setTitle] = useState()
   const [author, setAuthor] = useState()
   const [content, setContent] = useState()
-  const id = props.appState.posts[props.appState.posts.length-1].id+1
+  let id = 1
+  if (props.appState.posts.length > 0) {
+    id = props.appState.posts[props.appState.posts.length-1].id + 1
+  }
   function handleSubmit(e) {
     e.preventDefault()
     // Create Date
@@ -19,8 +19,8 @@ function PostFormInput(props) {
     props.appDispatch({
       type: "addPost",
       value: {
-        id: id,
-        title,
+        id:id,
+         title,
         author,
         content,
         createdAt: createdAt,

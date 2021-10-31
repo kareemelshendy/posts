@@ -18,8 +18,7 @@ function EditPost(props) {
       author: "",
       content: "",
       createdAt: ''
-    },
-    
+    }
   }
   function ourReducer(state, action) {
     switch (action.type) {

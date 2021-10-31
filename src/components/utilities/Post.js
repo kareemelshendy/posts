@@ -12,17 +12,16 @@ function Post(props) {
 
   function handleDelete(){
     appDispatch({type:'deletePost' , value:appState.posts.indexOf(props.post)})
-    console.log(appState.posts.indexOf(props.post))
   }
   return (
     <div className="posts__card">
       <div className="posts__card-img">
         <img src={postImage} alt="" />
       </div>
-      <Link to={`/edit/${appState.posts.indexOf(props.post)+1}`} className="posts__card-edit ">
+      <Link to={`/edit/${appState.posts.indexOf(props.post)+1}`} className="posts__card-edit" title="Edit">
         <i className="fas fa-pen"></i>
       </Link>
-      <button onClick={handleDelete} className="posts__card-delete">
+      <button onClick={handleDelete} title="Delete" className="posts__card-delete">
       <i className="fas fa-trash"></i>
       </button>
       <div className="posts__card-body">
