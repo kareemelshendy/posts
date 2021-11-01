@@ -37,7 +37,8 @@ function PostFormInput({ postData, onSubmit }) {
         <label htmlFor="title" className="form__group-label">
           Content
         </label>
-        <textarea {...register("content")} className="form__group-textarea" name="content" id="Content" cols="30" rows="10" placeholder="Add Content"></textarea>
+        <textarea {...register("content",{required:"* Content is required"})} className="form__group-textarea" name="content" id="Content" cols="30" rows="10" placeholder="Add Content"></textarea>
+        {errors.content && <p className="requiredError">{errors.content.message}</p>}
       </div>
       <div className="form__button">
         <button type="submit" className="btn btn-noBorder  mt-2">
