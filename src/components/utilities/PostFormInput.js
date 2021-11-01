@@ -1,26 +1,23 @@
 import React, { useState } from "react"
 import { withRouter } from "react-router"
+import { useContext } from "react/cjs/react.development"
+import { PostContext } from "../../contexts/PostsContext"
 
 function PostFormInput(props) {
   const [title, setTitle] = useState()
   const [author, setAuthor] = useState()
   const [content, setContent] = useState()
-  let id = 1
-  if (props.appState.posts.length > 0) {
-    id = props.appState.posts[props.appState.posts.length-1].id + 1
-  }
+  const { posts, dispatch } = useContext(PostContext)
+
   function handleSubmit(e) {
     e.preventDefault()
-    // Create Date
     const date = new Date()
     const createdAt = `${date.getDate()}/${date.getMonth() + 1}/${date.getFullYear()} || ${date.getHours()}:${date.getMinutes()}:${date.getSeconds()}`
-
-    // Add post value to dispach
-    props.appDispatch({
-      type: "addPost",
+    dispatch({
+      type: "ADD_POST",
       value: {
-        id:id,
-         title,
+        id: posts.length ? posts[posts.length - 1].id + 1 : 1,
+        title,
         author,
         content,
         createdAt: createdAt,

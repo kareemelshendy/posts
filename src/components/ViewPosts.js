@@ -1,14 +1,11 @@
 import React, { useContext } from "react"
 import { Link } from "react-router-dom"
-import { useEffect } from "react/cjs/react.development"
-import StateContext from "../contexts/AppStateContext"
+import { PostContext } from "../contexts/PostsContext"
 import Page from "./utilities/Page"
 import Post from "./utilities/Post"
 
 function ViewPosts() {
-  const AppState = useContext(StateContext)
-  // console.log(AppState.posts)
-
+  const {posts} = useContext(PostContext)
   return (
     <Page title='Posts'>
       <section id="home-1" className="mt-2 mb-4">
@@ -21,8 +18,8 @@ function ViewPosts() {
               </Link>
             </div>
             <div className="posts__cards mt-2">
-              {AppState.posts.map((post) => {
-                return <Post key={post.id} post={post} index={AppState.posts.indexOf(post)} />
+              {posts.map((post) => {
+                return <Post key={post.id} post={post} index={posts.indexOf(post)} />
               })}
             </div>
           </div>

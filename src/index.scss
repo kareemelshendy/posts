@@ -1,0 +1,432 @@
+@import url("https://fonts.googleapis.com/css2?family=Cormorant+Garamond&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Open+Sans&display=swap");
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: "Open Sans", sans-serif;
+}
+
+ul {
+    list-style: none;
+}
+
+a {
+    text-decoration: none;
+    color: #000;
+    // display: block;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5 {
+    font-family: "Cormorant Garamond", serif;
+    font-weight: bold;
+}
+
+.mt {
+    &-1 {
+        margin-top: 1rem;
+    }
+    &-2 {
+        margin-top: 2rem;
+    }
+    &-3 {
+        margin-top: 3rem;
+    }
+    &-4 {
+        margin-top: 4rem;
+    }
+}
+
+.mb {
+    &-1 {
+        margin-bottom: 1rem;
+    }
+    &-2 {
+        margin-bottom: 2rem;
+    }
+    &-3 {
+        margin-bottom: 3rem;
+    }
+    &-4 {
+        margin-bottom: 4rem;
+    }
+}
+
+.display {
+    display: none;
+}
+
+.overall__container {
+    display: flex;
+    flex-direction: column;
+    min-height: 80vh;
+    // overflow-x: scroll;
+}
+
+main {
+    flex-grow: 1;
+}
+
+header {
+    border-bottom: 3px solid #f4f4f4;
+    flex-shrink: 0;
+}
+
+.container {
+    margin-left: 5rem;
+    margin-right: 5rem;
+    // background-color: violet;
+}
+
+#header {
+    .header {
+        display: flex;
+        align-items: center !important;
+        padding-top: 1rem;
+        padding-bottom: 1rem;
+        &__logo {
+            img {
+                width: 2.5rem;
+                height: 2.5rem;
+            }
+            margin-right: 3rem;
+        }
+        &__posts {
+            font-weight: bold;
+            margin: 0;
+        }
+    }
+}
+
+.btn {
+    font-size: 1rem;
+    padding: 0.4rem 1.2rem;
+    background-color: #00cc66;
+    border-radius: 5px;
+    color: #fff;
+    cursor: pointer;
+    border: none;
+    &:hover {
+        background-color: rgb(4, 174, 89);
+    }
+}
+
+// Home Posts
+#home-1 {
+    .posts {
+        &__top {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            &-link {
+                font-size: 1rem;
+                padding: 0.4rem 1.2rem;
+                background-color: #00cc66;
+                border-radius: 5px;
+                color: #fff;
+                &:hover {
+                    background-color: rgb(4, 174, 89);
+                }
+            }
+        }
+        &__cards {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            grid-gap: 1rem;
+        }
+        &__card {
+            border-radius: 10px;
+            box-shadow: 2px 7px 11px rgba(0, 0, 0, 0.2);
+            position: relative;
+            &-edit {
+                position: absolute;
+                right: 1rem;
+                top: 1rem;
+                padding: .2rem 0.5rem;
+                background-color: #1ec96b;
+                border: none;
+                cursor: pointer;
+                color: #fff;
+                border-radius: 3px;
+                display: none;
+                // transition: all 5s ease-in;
+            }
+            &-delete {
+                position: absolute;
+                left: 1rem;
+                top: 1rem;
+                padding: .4rem 0.7rem;
+                background-color: #eb344c;
+                border: none;
+                cursor: pointer;
+                color: #fff;
+                border-radius: 3px;
+                display: none;
+                // transition: all 5s ease-in;
+            }
+            &:hover .posts__card-edit,
+            &:hover .posts__card-delete {
+                display: block;
+            }
+            &:hover .posts__card-img::after {
+                background-color: rgba(0, 0, 0, 0.4);
+            }
+            &-img {
+                width: 100%;
+                position: relative;
+                img {
+                    width: 100%;
+                    border-radius: 10px 10px 0 0;
+                }
+                &::after {
+                    content: "";
+                    position: absolute;
+                    top: 0;
+                    left: 0;
+                    width: 100%;
+                    height: 98%;
+                    border-radius: 10px 10px 0 0;
+                    background-color: transparent;
+                    transition: all .2s ease-in;
+                }
+            }
+            &-body {
+                padding: 1rem;
+            }
+            &-author {
+                display: flex;
+                justify-content: space-between;
+                align-items: center;
+                color: #b5b3b3;
+                &>div {
+                    display: flex;
+                    h4 {
+                        margin-left: 0.5rem;
+                    }
+                }
+                p {
+                    font-size: 0.9rem;
+                }
+            }
+            &-content {
+                color: rgb(145, 145, 145);
+                font-size: 0.9rem;
+                font-weight: 600;
+            }
+            &-link {
+                float: right;
+                margin-bottom: 1rem;
+                color: #4287f5;
+                i {
+                    font-size: 1rem;
+                }
+            }
+        }
+    }
+}
+
+// Add post 
+#addpost {
+    .form {
+        &>div {
+            width: 100%;
+            display: flex;
+            justify-content: space-between;
+        }
+        &__group {
+            width: 48%;
+            display: flex;
+            flex-direction: column;
+            textarea {
+                font-family: "Open Sans", sans-serif;
+            }
+            &-label {
+                font-weight: bold;
+                margin-bottom: .5rem;
+            }
+            &-input {
+                width: 100%;
+                padding: 1rem;
+                border-radius: 6px;
+                font-size: 1rem;
+                border: 2px solid rgb(179, 179, 179);
+                // margin-right: 20px;
+                &:focus {
+                    outline: none;
+                }
+            }
+            &-textarea {
+                width: 100%;
+                padding: 1rem;
+                border-radius: 6px;
+                font-size: 1.2rem;
+                border: 2px solid rgb(179, 179, 179);
+                &:focus {
+                    outline: none;
+                }
+            }
+        }
+        &__button {
+            width: 100%;
+            display: flex;
+            button {
+                margin-left: auto;
+            }
+        }
+    }
+}
+
+// Post 
+#singlePost {
+    .post {
+        &__top {
+            display: flex;
+            justify-content: space-between;
+            font-weight: bold;
+        }
+        &__card {
+            background-color: #f8f7f7;
+            display: flex;
+            border-radius: 10px;
+            box-shadow: 2px 7px 11px rgba(0, 0, 0, 0.2);
+            &-img {
+                border-radius: 10px 0 0 10px;
+            }
+            &-body {
+                width: 100%;
+                margin-left: 1rem;
+                padding: 1rem;
+                display: flex;
+                flex-direction: column;
+                justify-content: space-between;
+            }
+            &-author {
+                display: flex;
+                justify-content: space-between;
+                align-items: center;
+                color: #b5b3b3;
+                &>div {
+                    display: flex;
+                    h4 {
+                        margin-left: 0.5rem;
+                    }
+                }
+                p {
+                    font-size: 0.9rem;
+                }
+            }
+            &-content {
+                color: rgb(145, 145, 145);
+                font-size: 0.9rem;
+                font-weight: 600;
+            }
+        }
+        &__btn {
+            width: 100%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+    }
+}
+
+// media
+@media (max-width: 1065px) {
+    #home-1 {
+        .posts {
+            &__card {
+                &-author {
+                    p {
+                        font-size: 0.7rem;
+                    }
+                    &>div {
+                        h4 {
+                            font-size: 0.8rem;
+                        }
+                    }
+                }
+            }
+        }
+    }
+}
+
+@media (max-width: 960px) {
+    #home-1 {
+        .posts {
+            &__cards {
+                grid-template-columns: repeat(2, 1fr);
+            }
+            &__card {
+                &-author {
+                    p {
+                        font-size: 0.7rem;
+                    }
+                }
+                &-title {
+                    font-size: 0.8rem;
+                }
+                &-content {
+                    font-size: 0.8rem;
+                }
+            }
+        }
+    }
+}
+
+@media (max-width: 657px) {
+    #home-1 {
+        .posts {
+            &__cards {
+                grid-template-columns: 1fr;
+            }
+            &__card {
+                &-author {
+                    p {
+                        font-size: 0.8rem;
+                    }
+                    &>div {
+                        h4 {
+                            font-size: 1rem;
+                        }
+                    }
+                }
+                &-title {
+                    font-size: 1rem;
+                }
+            }
+        }
+    }
+}
+
+@media(max-width:840px) {
+    #singlePost {
+        .post {
+            &__card {
+                flex-direction: column;
+                // width: 50%;
+                margin-left: auto;
+                margin-right: auto;
+            }
+        }
+    }
+    #addpost {
+        .form {
+            &>div {
+                width: 100%;
+                display: flex;
+                flex-direction: column;
+            }
+            &__group {
+                width: 100%;
+                margin-bottom: 1rem;
+            }
+        }
+    }
+}

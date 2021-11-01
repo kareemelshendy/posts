@@ -1,12 +1,12 @@
-import React, { useContext } from "react"
+import React, {  } from "react"
 import { Link } from "react-router-dom"
-import StateContext from "../contexts/AppStateContext"
+import { useContext } from "react/cjs/react.development"
+import { PostContext } from "../contexts/PostsContext"
 import icon from "../img/logo.png"
 
 
 function Header() {
-  const appState= useContext(StateContext)
-  
+ const {posts} = useContext(PostContext)
   return (
     <header id="header">
       <div className="container">
@@ -14,7 +14,7 @@ function Header() {
           <Link to="/" className="header__logo">
             <img src={icon} alt="" />
           </Link>
-          <Link to='/posts' className="header__posts">Posts ({appState.posts.length})</Link>
+          <Link to='/posts' className="header__posts">Posts ({posts.length}) </Link>
         </div>
       </div>
     </header>
