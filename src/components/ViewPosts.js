@@ -2,7 +2,8 @@ import React, { useContext } from "react"
 import { Link } from "react-router-dom"
 import { PostContext } from "../contexts/PostsContext"
 import Page from "./utilities/Page"
-import Post from "./utilities/Post"
+import Post from "./Post/Post"
+
 
 function ViewPosts() {
   const {posts} = useContext(PostContext)

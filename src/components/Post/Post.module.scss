@@ -1,0 +1,101 @@
+.card {
+    border-radius: 10px;
+    box-shadow: 2px 7px 11px rgba(0, 0, 0, 0.2);
+    position: relative;
+}
+
+.cardEdit {
+    position: absolute;
+    right: 1rem;
+    top: 1rem;
+    padding: 0.2rem 0.5rem;
+    background-color: #3bb67d;
+    border: none;
+    cursor: pointer;
+    color: #fff;
+    border-radius: 3px;
+    display: none;
+    // transition: all 5s ease-in;
+}
+
+.cardDelete {
+    position: absolute;
+    left: 1rem;
+    top: 1rem;
+    padding: 0.4rem 0.7rem;
+    background-color: #eb344c;
+    border: none;
+    cursor: pointer;
+    color: #fff;
+    border-radius: 3px;
+    display: none;
+    // transition: all 5s ease-in;
+}
+
+.card:hover .cardEdit,
+.card:hover .cardDelete {
+    display: block;
+}
+
+.card:hover .cardImg::after {
+    background-color: rgba(0, 0, 0, 0.4);
+}
+
+.cardImg {
+    width: 100%;
+    position: relative;
+    img {
+        width: 100%;
+        border-radius: 10px 10px 0 0;
+    }
+    &::after {
+        content: "";
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 98%;
+        border-radius: 10px 10px 0 0;
+        background-color: transparent;
+        transition: all 0.2s ease-in;
+    }
+}
+
+.cardBody {
+    // background: red;
+    padding: 1rem;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+.cardAuthor {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    color: #b5b3b3;
+    &>div {
+        display: flex;
+        h4 {
+            margin-left: 0.5rem;
+        }
+    }
+    p {
+        font-size: 0.9rem;
+    }
+}
+
+.cardContent {
+    color: rgb(145, 145, 145);
+    font-size: 0.9rem;
+    font-weight: 600;
+}
+
+.cardLink {
+    margin-left: auto;
+    margin-top: auto;
+    color: #4287f5;
+    i {
+        font-size: 1rem;
+    }
+}

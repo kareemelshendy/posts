@@ -1,51 +1,43 @@
-import React, { useState } from "react"
+import React from "react"
 import { withRouter } from "react-router"
-import { useContext } from "react/cjs/react.development"
-import { PostContext } from "../../contexts/PostsContext"
+import { useForm } from "react-hook-form"
 
-function PostFormInput(props) {
-  const [title, setTitle] = useState()
-  const [author, setAuthor] = useState()
-  const [content, setContent] = useState()
-  const { posts, dispatch } = useContext(PostContext)
+function PostFormInput({ postData, onSubmit }) {
+  const {
+    register,
+    handleSubmit,
+    formState: { errors },
+  } = useForm({
+    defaultValues: {
+      title: postData?.title,
+      author: postData?.author,
+      content: postData?.content,
+    },
+  })
 
-  function handleSubmit(e) {
-    e.preventDefault()
-    const date = new Date()
-    const createdAt = `${date.getDate()}/${date.getMonth() + 1}/${date.getFullYear()} || ${date.getHours()}:${date.getMinutes()}:${date.getSeconds()}`
-    dispatch({
-      type: "ADD_POST",
-      value: {
-        id: posts.length ? posts[posts.length - 1].id + 1 : 1,
-        title,
-        author,
-        content,
-        createdAt: createdAt,
-      },
-    })
-    props.history.push("/posts")
-  }
   return (
-    <form action="" className="form" onSubmit={handleSubmit}>
+    <form action="" className="form" onSubmit={handleSubmit(onSubmit)}>
       <div className="mt-2">
         <div className="form__group">
           <label className="form__group-label" htmlFor="title">
             Title
           </label>
-          <input autoFocus onChange={(e) => setTitle(e.target.value)} className="form__group-input" type="text" placeholder="Add title" />
+          <input autoFocus {...register("title", { required: "* Title is required", maxLength: { value: 30, message: "* Title must be less than 30 charachters" } })} className="form__group-input" type="text" placeholder="Add title" />
+          {errors.title && <p className="requiredError">{errors.title.message}</p>}
         </div>
         <div className="form__group">
           <label className="form__group-label" htmlFor="Author">
             Author
           </label>
-          <input onChange={(e) => setAuthor(e.target.value)} className="form__group-input" type="text" placeholder="Add Author" />
+          <input {...register("author", { required: "* Author is required", maxLength: { value: 30, message: "* auther must be less than 14 charachters" } })} className="form__group-input" type="text" placeholder="Add Author" />
+          {errors.author && <p className="requiredError">{errors.author.message}</p>}
         </div>
       </div>
       <div className="form__group mt-2">
         <label htmlFor="title" className="form__group-label">
           Content
         </label>
-        <textarea onChange={(e) => setContent(e.target.value)} className="form__group-textarea" name="" id="" cols="30" rows="10" placeholder="Add Content"></textarea>
+        <textarea {...register("content")} className="form__group-textarea" name="content" id="Content" cols="30" rows="10" placeholder="Add Content"></textarea>
       </div>
       <div className="form__button">
         <button type="submit" className="btn btn-noBorder  mt-2">
