@@ -3,7 +3,7 @@ import { withRouter } from "react-router"
 import { PostContext } from "../contexts/PostsContext"
 
 import Page from "./utilities/Page"
-import PostFormInput from "./utilities/PostFormInput"
+import PostForm from "./utilities/PostForm"
 function AddPost(props) {
   const {posts,dispatch} = useContext(PostContext)
 
@@ -27,7 +27,7 @@ function AddPost(props) {
       <section id="addpost" className="mt-2 mb-2">
         <div className="container">
           <h2>Add Post</h2>
-          <PostFormInput onSubmit={onSubmit} />
+          <PostForm onSubmit={onSubmit} />
         </div>
       </section>
     </Page>

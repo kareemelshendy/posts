@@ -2,7 +2,7 @@ import React from "react"
 import { withRouter } from "react-router"
 import { useForm } from "react-hook-form"
 
-function PostFormInput({ postData, onSubmit }) {
+function PostForm({ postData, onSubmit }) {
   const {
     register,
     handleSubmit,
@@ -29,7 +29,7 @@ function PostFormInput({ postData, onSubmit }) {
           <label className="form__group-label" htmlFor="Author">
             Author
           </label>
-          <input {...register("author", { required: "* Author is required", maxLength: { value: 30, message: "* auther must be less than 14 charachters" } })} className="form__group-input" type="text" placeholder="Add Author" />
+          <input {...register("author", { required: "* Author is required", maxLength: { value: 30, message: "* author must be less than 30 charachters" } })} className="form__group-input" type="text" placeholder="Add Author" />
           {errors.author && <p className="requiredError">{errors.author.message}</p>}
         </div>
       </div>
@@ -49,4 +49,4 @@ function PostFormInput({ postData, onSubmit }) {
   )
 }
 
-export default withRouter(PostFormInput)
+export default withRouter(PostForm)

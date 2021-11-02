@@ -2,7 +2,7 @@ import React, { useContext } from "react"
 import { useParams, withRouter } from "react-router"
 import { PostContext } from "../contexts/PostsContext"
 import Page from "./utilities/Page"
-import PostFormInput from "./utilities/PostFormInput"
+import PostForm from "./utilities/PostForm"
 
 function EditPost(props) {
   const { posts, dispatch } = useContext(PostContext)
@@ -27,7 +27,7 @@ function EditPost(props) {
         <div className="container">
           <h2>Edit Post</h2>
           {posts && (
-            <PostFormInput postData={post}  onSubmit ={onSubmit} />
+            <PostForm postData={post}  onSubmit ={onSubmit} />
           )}
         </div>
       </section>
