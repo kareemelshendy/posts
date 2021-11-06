@@ -1,12 +1,12 @@
 import React, {  } from "react"
+import { useSelector } from "react-redux"
 import { Link } from "react-router-dom"
-import { useContext } from "react/cjs/react.development"
-import { PostContext } from "../contexts/PostsContext"
+
 import icon from "../img/logo.png"
 
 
 function Header() {
- const {posts} = useContext(PostContext)
+ const posts = useSelector(state=>state.posts.value)
   return (
     <header id="header">
       <div className="container">

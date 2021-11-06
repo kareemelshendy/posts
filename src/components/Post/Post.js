@@ -1,16 +1,20 @@
-import React, { useContext } from "react"
+import React from "react"
 import { Link } from "react-router-dom"
-import { PostContext } from "../../contexts/PostsContext"
 import styles from "../Post/Post.module.scss"
 
 import postImage from "../../img/post-img.jpg"
+import { removePost } from "../../featuers/CardSlice"
+import { useDispatch } from "react-redux"
+import { useSelector } from "react-redux"
 function Post(props) {
-  const { posts, dispatch } = useContext(PostContext)
-
+  const posts = useSelector((state) => state.posts.value)
+  const dispatch = useDispatch()
+  
   function handleDelete() {
     console.log(posts.indexOf(props.post))
-    dispatch({ type: "DELETE_POST", value: posts.indexOf(props.post) })
+    dispatch(removePost(posts.indexOf(props.post)))
   }
+
   return (
     <div className={styles.card}>
       <div className={styles.cardImg}>

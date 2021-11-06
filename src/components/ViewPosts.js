@@ -1,14 +1,14 @@
-import React, { useContext } from "react"
+import React from "react"
 import { Link } from "react-router-dom"
-import { PostContext } from "../contexts/PostsContext"
+
 import Page from "./utilities/Page"
 import Post from "./Post/Post"
-
+import { useSelector } from "react-redux"
 
 function ViewPosts() {
-  const {posts} = useContext(PostContext)
+  const posts = useSelector((state) => state.posts.value)
   return (
-    <Page title='Posts'>
+    <Page title="Posts">
       <section id="home-1" className="mt-2 mb-4">
         <div className="container">
           <div className="posts">

@@ -1,15 +1,14 @@
-import React, { useContext } from "react"
+import React from "react"
 import Page from "./utilities/Page"
-
 import postImage from "../img/post-img.jpg"
 import { Link } from "react-router-dom"
-import { PostContext } from "../contexts/PostsContext"
+import { useSelector } from "react-redux"
 
 function Home() {
-  const {posts} = useContext(PostContext)
-  const post = posts[posts.length-1]
+  const posts = useSelector((state) => state.posts.value)
+  const post = posts[posts.length - 1]
   return (
-    <Page title="Home" >
+    <Page title="Home">
       <section id="singlePost" className="mt-2 mb-2">
         <div className="container">
           <div className="post">

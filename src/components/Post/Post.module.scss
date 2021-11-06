@@ -80,6 +80,8 @@
         }
     }
     .cardContent {
+        width: 100%;
+        overflow-wrap: break-word;
         color: rgb(145, 145, 145);
         font-size: 0.9rem;
         font-weight: 600;

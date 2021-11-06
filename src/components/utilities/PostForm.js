@@ -22,14 +22,14 @@ function PostForm({ postData, onSubmit }) {
           <label className="form__group-label" htmlFor="title">
             Title
           </label>
-          <input autoFocus {...register("title", { required: "* Title is required", maxLength: { value: 30, message: "* Title must be less than 30 charachters" } })} className="form__group-input" type="text" placeholder="Add title" />
+          <input autoFocus {...register("title", { required: "* Title is required", maxLength: { value: 30, message: "* Title must be 30 charachters" } })} className={`form__group-input form__group-${errors.title?'error':'normal'}`} type="text" placeholder="Add title" />
           {errors.title && <p className="requiredError">{errors.title.message}</p>}
         </div>
         <div className="form__group">
           <label className="form__group-label" htmlFor="Author">
             Author
           </label>
-          <input {...register("author", { required: "* Author is required", maxLength: { value: 30, message: "* author must be less than 30 charachters" } })} className="form__group-input" type="text" placeholder="Add Author" />
+          <input {...register("author", { required: "* Author is required", maxLength: { value: 30, message: "* author must be 30 charachters" } })} className={`form__group-input form__group-${errors.author?'error':'normal'}`}  type="text" placeholder="Add Author" />
           {errors.author && <p className="requiredError">{errors.author.message}</p>}
         </div>
       </div>
@@ -37,7 +37,7 @@ function PostForm({ postData, onSubmit }) {
         <label htmlFor="title" className="form__group-label">
           Content
         </label>
-        <textarea {...register("content",{required:"* Content is required"})} className="form__group-textarea" name="content" id="Content" cols="30" rows="10" placeholder="Add Content"></textarea>
+        <textarea {...register("content",{required:"* Content is required",maxLength:{value:100,message:'* content must be 100 charachters'}})} className={`form__group-textarea form__group-${errors.content?'error':'normal'}`}  name="content" id="Content" cols="30" rows="10" placeholder="Add Content"></textarea>
         {errors.content && <p className="requiredError">{errors.content.message}</p>}
       </div>
       <div className="form__button">

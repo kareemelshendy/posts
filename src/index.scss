@@ -86,7 +86,7 @@ header {
 }
 
 .requiredError {
-    color: red
+    color: red;
 }
 
 #header {
@@ -131,7 +131,7 @@ header {
             justify-content: space-between;
             &-link {
                 font-size: 1rem;
-                padding: 0.4rem .9rem;
+                padding: 0.4rem 0.9rem;
                 background-color: #3bb67d;
                 border-radius: 5px;
                 color: #fff;
@@ -148,7 +148,7 @@ header {
     }
 }
 
-// Add post 
+// Add post
 #addpost {
     .form {
         &>div {
@@ -165,25 +165,29 @@ header {
             }
             &-label {
                 font-weight: bold;
-                margin-bottom: .5rem;
+                margin-bottom: 0.5rem;
             }
             &-input {
                 width: 100%;
                 padding: 1rem;
                 border-radius: 6px;
                 font-size: 1rem;
-                border: 2px solid rgb(179, 179, 179);
                 // margin-right: 20px;
                 &:focus {
                     outline: none;
                 }
+            }
+            &-error {
+                border: 2px solid red;
+            }
+            &-normal {
+                border: 2px solid rgb(179, 179, 179);
             }
             &-textarea {
                 width: 100%;
                 padding: 1rem;
                 border-radius: 6px;
                 font-size: 1.2rem;
-                border: 2px solid rgb(179, 179, 179);
                 &:focus {
                     outline: none;
                 }
@@ -199,7 +203,7 @@ header {
     }
 }
 
-// Post 
+// Post
 #singlePost {
     .post {
         &__top {
@@ -321,7 +325,7 @@ header {
     }
 }
 
-@media(max-width:840px) {
+@media (max-width: 840px) {
     #singlePost {
         .post {
             &__card {
